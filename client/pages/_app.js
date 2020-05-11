@@ -1,10 +1,12 @@
-import { ThemeProvider, CSSReset } from '@chakra-ui/core';
+import { ThemeProvider, CSSReset, Box } from '@chakra-ui/core';
 
 const App = ({ Component, pageProps }) => {
   return (
     <ThemeProvider>
       <CSSReset />
-      <Component {...pageProps} />
+      <Box px={2}>
+        <Component {...pageProps} />
+      </Box>
     </ThemeProvider>
   );
 };
