@@ -7,8 +7,10 @@
     "start": "ts-node-dev --poll ./src/index.ts"
   },
   "dependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/express": "^4.17.6",
     "@types/mongoose": "^5.7.16",
+    "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "express-validator": "^6.4.1",
