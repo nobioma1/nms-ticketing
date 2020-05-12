@@ -7,8 +7,12 @@ const start = async () => {
     throw new Error('JWT_KEY not provided');
   }
 
+  if (!process.env.MONGO_DB_URI) {
+    throw new Error('MONGO_DB_URI not provided');
+  }
+
   try {
-    await mongoose.connect('mongodb://auth-mongo-service:27017/auth', {
+    await mongoose.connect(process.env.MONGO_DB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
