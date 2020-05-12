@@ -3,11 +3,11 @@ import { useState } from 'react';
 import { Heading, Box, FormLabel, Input, Button, Stack } from '@chakra-ui/core';
 import useRequest from '../../hooks/use-request';
 
-const SignUp = () => {
+const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { doRequest, errors } = useRequest({
-    url: '/api/users/signup',
+    url: '/api/users/signin',
     method: 'post',
     body: { email, password },
     onSuccess: () => Router.push('/'),
@@ -21,7 +21,7 @@ const SignUp = () => {
 
   return (
     <form onSubmit={onSubmitHandler}>
-      <Heading as="h2">Create an Account</Heading>
+      <Heading as="h2">Sign In.</Heading>
       {errors}
       <Stack my={2}>
         <Box>
@@ -41,11 +41,11 @@ const SignUp = () => {
           />
         </Box>
         <Button type="submit" variant="solid" variantColor="blue">
-          Signup
+          SignIn
         </Button>
       </Stack>
     </form>
   );
 };
 
-export default SignUp;
+export default SignIn;
