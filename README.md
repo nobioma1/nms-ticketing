@@ -10,6 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 For development, you will need to have installed on your machine:
 
+- [Next.js](https://nextjs.org/)
 - [Docker](https://skaffold.dev/docs/install/), and enable kubernetes
 - [Skaffold](https://skaffold.dev/docs/install/)
 - [NGINX Ingress Controller](https://kubernetes.github.io/ingress-nginx/deploy/)
