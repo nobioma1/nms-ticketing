@@ -2,7 +2,7 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
 
-import { app } from '../app';
+import { generateID } from './helpers/generate-id';
 
 declare global {
   namespace NodeJS {
@@ -41,8 +41,9 @@ afterAll(async () => {
 
 global.signin = () => {
   // Build JwT payload {id, email}
+  const id = generateID();
   const payload = {
-    id: '507f1f77bcf86cd799439011',
+    id,
     email: 'test@test.com',
   };
 
