@@ -2,6 +2,7 @@ import request from 'supertest';
 
 import { app } from '../../app';
 import { Ticket } from '../../models/tickets';
+import { natsWrapper } from '../../nats-wrapper';
 
 describe('[POST /api/tickets] Create Tickets', () => {
   it('respond to route for post request', async () => {
@@ -69,5 +70,14 @@ describe('[POST /api/tickets] Create Tickets', () => {
     tickets = await Ticket.find();
 
     expect(tickets).toHaveLength(1);
+  });
+
+  it('publishes an event', async () => {
+    await request(app)
+      .post('/api/tickets')
+      .set('Cookie', global.signin())
+      .send({ title: 'Test Event', price: 2000 });
+
+    expect(natsWrapper.client.publish).toHaveBeenCalled();
   });
 });

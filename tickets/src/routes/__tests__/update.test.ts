@@ -2,6 +2,7 @@ import request from 'supertest';
 
 import { app } from '../../app';
 import { generateID } from '../../test/helpers/generate-id';
+import { natsWrapper } from '../../nats-wrapper';
 
 describe('[PUT /api/tickets/:id] Update Ticket', () => {
   it('response of 404 if ticket id is not valid', async () => {
@@ -76,5 +77,22 @@ describe('[PUT /api/tickets/:id] Update Ticket', () => {
     expect(res.status).toBe(200);
     expect(res.body.title).toEqual(payload.title);
     expect(res.body.price).toEqual(payload.price);
+  });
+
+  it('publishes an event', async () => {
+    const user = global.signin();
+    const payload = { title: 'A different title', price: 200 };
+
+    const ticket = await request(app)
+      .post('/api/tickets')
+      .set('Cookie', user)
+      .send({ title: 'my ticket to test', price: 20 });
+
+    await request(app)
+      .put(`/api/tickets/${ticket.body.id}`)
+      .set('Cookie', user)
+      .send(payload);
+
+    expect(natsWrapper.client.publish).toHaveBeenCalled();
   });
 });
