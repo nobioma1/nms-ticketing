@@ -1,9 +1,10 @@
 import mongoose from 'mongoose';
 
+import { Order, OrderStatus } from './order';
+
 interface ticketAttrs {
   title: string;
   price: number;
-  userId: string;
 }
 
 // interface to describe properties of a user model
@@ -13,10 +14,10 @@ interface TicketModel extends mongoose.Model<TicketDoc> {
 
 // interface that describes the properties of a
 // User Document
-interface TicketDoc extends mongoose.Document {
+export interface TicketDoc extends mongoose.Document {
   title: string;
   price: number;
-  userId: string;
+  isReserved: () => Promise<boolean>;
 }
 
 const ticketSchema = new mongoose.Schema(
@@ -28,10 +29,7 @@ const ticketSchema = new mongoose.Schema(
     price: {
       type: Number,
       required: true,
-    },
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
+      min: 0,
     },
   },
   {
@@ -39,7 +37,6 @@ const ticketSchema = new mongoose.Schema(
       transform(doc, ret) {
         ret.id = ret._id;
         delete ret._id;
-        delete ret.__v;
       },
     },
   }
@@ -48,6 +45,21 @@ const ticketSchema = new mongoose.Schema(
 // Adding some type checking for creating a new user
 ticketSchema.statics.build = (attrs: ticketAttrs) => {
   return new Ticket(attrs);
+};
+
+ticketSchema.methods.isReserved = async function () {
+  const existingOrder = await Order.findOne({
+    ticket: this,
+    status: {
+      $in: [
+        OrderStatus.Created,
+        OrderStatus.AwaitingPayment,
+        OrderStatus.Complete,
+      ],
+    },
+  });
+
+  return !!existingOrder;
 };
 
 const Ticket = mongoose.model<TicketDoc, TicketModel>('Ticket', ticketSchema);
