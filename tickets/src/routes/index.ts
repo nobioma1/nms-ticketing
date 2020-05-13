@@ -1,5 +1,4 @@
 import express, { Request, Response } from 'express';
-import { NotFoundError } from '@nms-ticketing/common';
 
 import { Ticket } from '../models/tickets';
 
