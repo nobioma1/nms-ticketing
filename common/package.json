@@ -1,6 +1,6 @@
 {
   "name": "@nms-ticketing/common",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "sharable logic mong services",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
@@ -9,7 +9,8 @@
   ],
   "scripts": {
     "clean": "del ./build/*",
-    "build": "npm run clean && tsc"
+    "build": "npm run clean && tsc",
+    "prepublish": "npm run build"
   },
   "keywords": [],
   "author": "",
