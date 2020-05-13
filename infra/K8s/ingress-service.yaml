@@ -4,7 +4,7 @@ metadata:
   name: ingress-service
   annotations:
     kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/use-regex: 'true'
 spec:
   rules:
     - host: ticketing.k8s.dev
@@ -18,6 +18,10 @@ spec:
             backend:
               serviceName: tickets-service
               servicePort: 5001
+          - path: /api/orders/?(.*)
+            backend:
+              serviceName: orders-service
+              servicePort: 5002
           - path: /?(.*)
             backend:
               serviceName: client-service
