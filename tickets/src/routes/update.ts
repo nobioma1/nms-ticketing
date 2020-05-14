@@ -4,6 +4,7 @@ import {
   validateRequest,
   NotFoundError,
   NotAuthorizedError,
+  BadRequestError,
 } from '@nms-ticketing/common';
 import { body } from 'express-validator';
 
@@ -28,6 +29,10 @@ router.put(
 
     if (!ticket) {
       throw new NotFoundError();
+    }
+
+    if (ticket.orderId) {
+      throw new BadRequestError('Ticket is currently reserved');
     }
 
     if (String(ticket.userId) !== req.currentUser!.id) {

@@ -3,6 +3,7 @@ import request from 'supertest';
 import { app } from '../../app';
 import { generateID } from '../../test/helpers/generate-id';
 import { natsWrapper } from '../../nats-wrapper';
+import { Ticket } from '../../models/tickets';
 
 describe('[PUT /api/tickets/:id] Update Ticket', () => {
   it('response of 404 if ticket id is not valid', async () => {
@@ -94,5 +95,25 @@ describe('[PUT /api/tickets/:id] Update Ticket', () => {
       .send(payload);
 
     expect(natsWrapper.client.publish).toHaveBeenCalled();
+  });
+
+  it('rejects update if ticket is reserved', async () => {
+    const user = global.signin();
+
+    const newTicket = await request(app)
+      .post('/api/tickets')
+      .set('Cookie', user)
+      .send({ title: 'my ticket to test', price: 20 });
+
+    const ticket = await Ticket.findById(newTicket.body.id);
+    ticket!.set({ orderId: generateID() });
+    await ticket!.save();
+
+    const res = await request(app)
+      .put(`/api/tickets/${newTicket.body.id}`)
+      .set('Cookie', user)
+      .send({ title: 'my ticket to test', price: 300 });
+
+    expect(res.status).toBe(400);
   });
 });
