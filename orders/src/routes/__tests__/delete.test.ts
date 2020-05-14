@@ -3,6 +3,7 @@ import request from 'supertest';
 import { app } from '../../app';
 import { Ticket } from '../../models/tickets';
 import { OrderStatus } from '../../models/order';
+import { natsWrapper } from '../../nats-wrapper';
 
 describe('[DELETE /api/orders/:orderId] Cancel an Order', () => {
   it('marks order as cancelled order', async () => {
@@ -48,5 +49,19 @@ describe('[DELETE /api/orders/:orderId] Cancel an Order', () => {
       .set('Cookie', user2);
 
     expect(res.status).toBe(401);
+  });
+
+  it('emits an event when order is cancelled', async () => {
+    const ticket = Ticket.build({
+      title: 'concert',
+      price: 20,
+    });
+    await ticket.save();
+
+    await request(app)
+      .delete(`/api/orders/${ticket.id}`)
+      .set('Cookie', global.signin());
+
+    expect(natsWrapper.client.publish).toHaveBeenCalled();
   });
 });

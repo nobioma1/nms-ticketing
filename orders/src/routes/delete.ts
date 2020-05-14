@@ -7,6 +7,8 @@ import {
 } from '@nms-ticketing/common';
 
 import { Order } from '../models/order';
+import { OrderCancelledPublisher } from '../events/publishers/order-cancelled-publisher';
+import { natsWrapper } from '../nats-wrapper';
 
 const router = express.Router();
 
@@ -30,6 +32,13 @@ router.delete(
       status: OrderStatus.Cancelled,
     });
     await order.save();
+
+    new OrderCancelledPublisher(natsWrapper.client).publish({
+      id: order.id,
+      ticket: {
+        id: order.ticket.id,
+      },
+    });
 
     res.status(200).send(order);
   }
