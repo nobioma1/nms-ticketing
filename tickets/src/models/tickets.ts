@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { updateIfCurrentPlugin } from 'mongoose-update-if-current';
 
 interface ticketAttrs {
   title: string;
@@ -17,6 +18,7 @@ interface TicketDoc extends mongoose.Document {
   title: string;
   price: number;
   userId: string;
+  version: number;
 }
 
 const ticketSchema = new mongoose.Schema(
@@ -44,6 +46,12 @@ const ticketSchema = new mongoose.Schema(
     },
   }
 );
+
+// rename __v to version
+ticketSchema.set('versionKey', 'version');
+
+// update the version property if Doc is updated
+ticketSchema.plugin(updateIfCurrentPlugin);
 
 // Adding some type checking for creating a new user
 ticketSchema.statics.build = (attrs: ticketAttrs) => {
