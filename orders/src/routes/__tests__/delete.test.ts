@@ -4,10 +4,12 @@ import { app } from '../../app';
 import { Ticket } from '../../models/tickets';
 import { OrderStatus } from '../../models/order';
 import { natsWrapper } from '../../nats-wrapper';
+import { generateID } from '../../test/helpers/generate-id';
 
 describe('[DELETE /api/orders/:orderId] Cancel an Order', () => {
   it('marks order as cancelled order', async () => {
     const ticket = Ticket.build({
+      id: generateID(),
       title: 'concert',
       price: 20,
     });
@@ -30,6 +32,7 @@ describe('[DELETE /api/orders/:orderId] Cancel an Order', () => {
 
   it('error if order is not for auth user', async () => {
     const ticket = Ticket.build({
+      id: generateID(),
       title: 'concert',
       price: 20,
     });
@@ -53,6 +56,7 @@ describe('[DELETE /api/orders/:orderId] Cancel an Order', () => {
 
   it('emits an event when order is cancelled', async () => {
     const ticket = Ticket.build({
+      id: generateID(),
       title: 'concert',
       price: 20,
     });

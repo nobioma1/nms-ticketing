@@ -2,9 +2,11 @@ import request from 'supertest';
 
 import { app } from '../../app';
 import { Ticket, TicketDoc } from '../../models/tickets';
+import { generateID } from '../../test/helpers/generate-id';
 
 const createTicket = async (): Promise<TicketDoc> => {
   const ticket = Ticket.build({
+    id: generateID(),
     title: 'concert',
     price: 20,
   });

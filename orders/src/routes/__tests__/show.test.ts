@@ -2,10 +2,12 @@ import request from 'supertest';
 
 import { app } from '../../app';
 import { Ticket } from '../../models/tickets';
+import { generateID } from '../../test/helpers/generate-id';
 
 describe('[GET /api/orders/:orderId] Get an Order', () => {
   it('fetch a users order', async () => {
     const ticket = Ticket.build({
+      id: generateID(),
       title: 'concert',
       price: 20,
     });
@@ -28,6 +30,7 @@ describe('[GET /api/orders/:orderId] Get an Order', () => {
 
   it('error if order is not for auth user', async () => {
     const ticket = Ticket.build({
+      id: generateID(),
       title: 'concert',
       price: 20,
     });

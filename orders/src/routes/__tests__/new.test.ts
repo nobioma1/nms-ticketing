@@ -20,6 +20,7 @@ describe('[POST /api/orders] Create Orders', () => {
 
   it('returns an error if ticket is already reserved', async () => {
     const ticket = Ticket.build({
+      id: generateID(),
       title: 'concert',
       price: 20,
     });
@@ -45,6 +46,7 @@ describe('[POST /api/orders] Create Orders', () => {
 
   it('reserves a ticket', async () => {
     const ticket = Ticket.build({
+      id: generateID(),
       title: 'concert',
       price: 20,
     });
@@ -60,6 +62,7 @@ describe('[POST /api/orders] Create Orders', () => {
 
   it('emits an event when order is created', async () => {
     const ticket = Ticket.build({
+      id: generateID(),
       title: 'concert',
       price: 20,
     });
