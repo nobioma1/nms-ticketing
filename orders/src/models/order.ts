@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { OrderStatus } from '@nms-ticketing/common';
+import { updateIfCurrentPlugin } from 'mongoose-update-if-current';
 
 import { TicketDoc } from './tickets';
 
@@ -24,6 +25,7 @@ interface OrderDoc extends mongoose.Document {
   status: OrderStatus;
   expiresAt: Date;
   ticket: TicketDoc;
+  version: number;
 }
 
 const orderSchema = new mongoose.Schema(
@@ -55,6 +57,12 @@ const orderSchema = new mongoose.Schema(
     },
   }
 );
+
+// rename __v to version
+orderSchema.set('versionKey', 'version');
+
+// update the version property if Doc is updated
+orderSchema.plugin(updateIfCurrentPlugin);
 
 // Adding some type checking for creating a new user
 orderSchema.statics.build = (attrs: orderAttrs) => {

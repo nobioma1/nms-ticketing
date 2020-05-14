@@ -38,6 +38,7 @@ router.delete(
       ticket: {
         id: order.ticket.id,
       },
+      version: order.version,
     });
 
     res.status(200).send(order);
