@@ -15,20 +15,25 @@ interface TicketModel extends mongoose.Model<TicketDoc> {
 // interface that describes the properties of a
 // User Document
 interface TicketDoc extends mongoose.Document {
-  title: string;
+  orderId?: string;
   price: number;
+  title: string;
   userId: string;
   version: number;
 }
 
 const ticketSchema = new mongoose.Schema(
   {
-    title: {
-      type: String,
-      required: true,
+    orderId: {
+      type: mongoose.Schema.Types.ObjectId,
+      default: undefined,
     },
     price: {
       type: Number,
+      required: true,
+    },
+    title: {
+      type: String,
       required: true,
     },
     userId: {
