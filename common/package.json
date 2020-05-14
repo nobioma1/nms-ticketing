@@ -1,6 +1,6 @@
 {
   "name": "@nms-ticketing/common",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "description": "sharable logic mong services",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
