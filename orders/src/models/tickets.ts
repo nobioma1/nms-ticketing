@@ -2,14 +2,15 @@ import mongoose from 'mongoose';
 
 import { Order, OrderStatus } from './order';
 
-interface ticketAttrs {
+interface TicketAttrs {
+  id: string;
   title: string;
   price: number;
 }
 
 // interface to describe properties of a user model
 interface TicketModel extends mongoose.Model<TicketDoc> {
-  build(attrs: ticketAttrs): TicketDoc;
+  build(attrs: TicketAttrs): TicketDoc;
 }
 
 // interface that describes the properties of a
@@ -43,8 +44,12 @@ const ticketSchema = new mongoose.Schema(
 );
 
 // Adding some type checking for creating a new user
-ticketSchema.statics.build = (attrs: ticketAttrs) => {
-  return new Ticket(attrs);
+ticketSchema.statics.build = (attrs: TicketAttrs) => {
+  return new Ticket({
+    _id: attrs.id,
+    title: attrs.title,
+    price: attrs.price,
+  });
 };
 
 ticketSchema.methods.isReserved = async function () {
