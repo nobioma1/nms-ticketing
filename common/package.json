@@ -1,7 +1,7 @@
 {
   "name": "@nms-ticketing/common",
-  "version": "1.3.2",
-  "description": "sharable logic mong services",
+  "version": "1.4.0",
+  "description": "Shared logic among ticketing app services",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "files": [
@@ -12,9 +12,13 @@
     "build": "npm run clean && tsc",
     "prepublish": "npm run build"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Noble Obioma",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nobioma1/nms-ticketing.git",
+    "directory": "common"
+  },
   "devDependencies": {
     "del-cli": "^3.0.0",
     "typescript": "^3.8.3"
