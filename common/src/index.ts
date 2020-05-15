@@ -5,6 +5,7 @@ export * from './errors/not-authorized-error';
 export * from './errors/not-found-error';
 export * from './errors/request-validation-error';
 
+export * from './events/expiration-complete-event';
 export * from './events/listener';
 export * from './events/order-cancelled-event';
 export * from './events/order-created-event';
