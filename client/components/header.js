@@ -8,7 +8,7 @@ const Header = (props) => {
     <Flex alignItems="center" justifyContent="space-between" py={3} py={2}>
       <Link href="/">
         <Heading cursor="pointer" fontSize="xl">
-          Tickt
+          Teeket
         </Heading>
       </Link>
 
