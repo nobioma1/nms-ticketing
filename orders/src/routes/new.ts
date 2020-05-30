@@ -28,7 +28,7 @@ router.post(
     const ticket = await Ticket.findById(ticketId);
 
     if (!ticket) {
-      throw new NotFoundError();
+      throw new NotFoundError('Ticket Not Found');
     }
 
     // find an order with ticket ID that is not cancelled

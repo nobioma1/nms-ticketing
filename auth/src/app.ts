@@ -25,7 +25,7 @@ app.use(signUp);
 app.use(errorHandler);
 
 app.all('*', async () => {
-  throw new NotFoundError();
+  throw new NotFoundError('Route Not Found');
 });
 
 export { app };

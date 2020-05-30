@@ -28,7 +28,7 @@ router.put(
     const ticket = await Ticket.findById(req.params.id);
 
     if (!ticket) {
-      throw new NotFoundError();
+      throw new NotFoundError('Ticket Not Found');
     }
 
     if (ticket.orderId) {

@@ -31,7 +31,7 @@ app.use(deleteOrderRouter);
 app.use(errorHandler);
 
 app.all('*', async () => {
-  throw new NotFoundError();
+  throw new NotFoundError('Route Not Found');
 });
 
 export { app };
