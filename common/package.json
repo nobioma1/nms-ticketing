@@ -1,6 +1,6 @@
 {
   "name": "@nms-ticketing/common",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Shared logic among ticketing app services",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
