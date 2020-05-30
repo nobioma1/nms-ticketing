@@ -22,6 +22,10 @@ spec:
             backend:
               serviceName: orders-service
               servicePort: 5002
+          - path: /api/payments/?(.*)
+            backend:
+              serviceName: payments-service
+              servicePort: 5003
           - path: /?(.*)
             backend:
               serviceName: client-service
