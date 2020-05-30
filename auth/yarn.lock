@@ -456,17 +456,20 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@nms-ticketing/common@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@nms-ticketing/common/-/common-1.0.1.tgz#3600c233087249042c9960a62a04d46ef3369555"
-  integrity sha512-Yst2cDo1Pz3sByIjnXjMiXsBZ4PTiRCA0BeDYUbsnPEcg1qAwpCjYds+jRI/rIeTrvnGc41izN9FbihI+lzevQ==
+"@nms-ticketing/common@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@nms-ticketing/common/-/common-1.5.0.tgz#cd37d4ea856892bae165f3af29c902e3fa6c65b8"
+  integrity sha512-K5YmHStzFuswPdVjIgSqPJbdFsWSN80XiMi6UHMl+1NG4X0K6uzTKuhUBYGG6Xs6lfA2Ae5hBF3WeGHLTQQDyA==
   dependencies:
     "@types/cookie-session" "^2.0.39"
     "@types/express" "^4.17.6"
     "@types/jsonwebtoken" "^8.3.9"
+    "@types/node" "^14.0.1"
     cookie-session "^1.4.0"
     express "^4.17.1"
     express-validator "^6.4.1"
+    jsonwebtoken "^8.5.1"
+    node-nats-streaming "^0.3.2"
 
 "@sinonjs/commons@^1.7.0":
   version "1.7.2"
@@ -704,6 +707,11 @@
   version "13.13.5"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-13.13.5.tgz#96ec3b0afafd64a4ccea9107b75bf8489f0e5765"
   integrity sha512-3ySmiBYJPqgjiHA7oEaIo2Rzz0HrOZ7yrNO5HWyaE5q0lQ3BppDZ3N53Miz8bw2I7gh1/zir2MGVZBvpb1zq9g==
+
+"@types/node@^14.0.1":
+  version "14.0.6"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.6.tgz#f9e178b2da31a4b0ec60b64649e244c31ce18daf"
+  integrity sha512-FbNmu4F67d3oZMWBV6Y4MaPER+0EpE9eIYf2yaHhCWovc1dlXCZkqGX4NLHfVVr6umt20TNBdRzrNJIzIKfdbw==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -2086,6 +2094,11 @@ globals@^11.1.0:
   resolved "https://registry.yarnpkg.com/globals/-/globals-11.12.0.tgz#ab8795338868a0babd8525758018c2a7eb95c42e"
   integrity sha512-WOBp/EEGUiIsJSp7wcv/y6MO+lV9UoncWqxuFfm8eBwzWNgyfBd6Gz+IeKQ9jCmyhoH99g15M3T+QaVHFjizVA==
 
+google-protobuf@^3.11.2:
+  version "3.12.2"
+  resolved "https://registry.yarnpkg.com/google-protobuf/-/google-protobuf-3.12.2.tgz#50ce9f9b6281235724eb243d6a83e969a2176e53"
+  integrity sha512-4CZhpuRr1d6HjlyrxoXoocoGFnRYgKULgMtikMddA9ztRyYR59Aondv2FioyxWVamRo0rF2XpYawkTCBEQOSkA==
+
 graceful-fs@^4.1.2, graceful-fs@^4.2.4:
   version "4.2.4"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.4.tgz#2256bde14d3632958c465ebc96dc467ca07a29fb"
@@ -3424,6 +3437,14 @@ nanomatch@^1.2.9:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
+nats@^1.4.9:
+  version "1.4.9"
+  resolved "https://registry.yarnpkg.com/nats/-/nats-1.4.9.tgz#ad86a920bd44110193edc25068c8e91a358f7a81"
+  integrity sha512-D0qTg2v0jir32TCJfGkxRwOba4/9vqJJmr4GtghR/J9AF6E0y1BdCeXxnD2G+hruSPnKUbF0NzaQVPbSg5fdOg==
+  dependencies:
+    nuid "^1.1.4"
+    ts-nkeys "^1.0.16"
+
 natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
@@ -3448,6 +3469,15 @@ node-modules-regexp@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/node-modules-regexp/-/node-modules-regexp-1.0.0.tgz#8d9dbe28964a4ac5712e9131642107c71e90ec40"
   integrity sha1-jZ2+KJZKSsVxLpExZCEHxx6Q7EA=
+
+node-nats-streaming@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/node-nats-streaming/-/node-nats-streaming-0.3.2.tgz#a6d1b77eae837495856893f573e3d78184b39833"
+  integrity sha512-exeT+FwGYW3UbBSzu8a7ykwWoY6R/vjQLr1RoZ1gnoJ9F66WVvpMZQWCZzLxlf9XRpJTTygcp6P1+WRw9h07Sg==
+  dependencies:
+    google-protobuf "^3.11.2"
+    nats "^1.4.9"
+    nuid "^1.1.4"
 
 node-notifier@^5.4.0:
   version "5.4.3"
@@ -3507,6 +3537,11 @@ npm-run-path@^4.0.0:
   integrity sha512-S48WzZW777zhNIrn7gxOlISNAqi9ZC/uQFnRdbeIHhZhCA6UqpkOT8T1G7BvfdgP4Er8gF4sUbaS0i7QvIfCWw==
   dependencies:
     path-key "^3.0.0"
+
+nuid@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/nuid/-/nuid-1.1.4.tgz#6145710b6cc9ef0df7b94af09c6d750925939097"
+  integrity sha512-PXiYyHhGfrq8H4g5HyC8enO1lz6SBe5z6x1yx/JG4tmADzDGJVQy3l1sRf3VtEvPsN8dGn9hRFRwDKWL62x0BA==
 
 nwsapi@^2.2.0:
   version "2.2.0"
@@ -4648,6 +4683,13 @@ ts-jest@^25.5.1:
     semver "6.x"
     yargs-parser "18.x"
 
+ts-nkeys@^1.0.16:
+  version "1.0.16"
+  resolved "https://registry.yarnpkg.com/ts-nkeys/-/ts-nkeys-1.0.16.tgz#b0c6e7c4f16f976c7e7ddb6982fc789a2f971248"
+  integrity sha512-1qrhAlavbm36wtW+7NtKOgxpzl+70NTF8xlz9mEhiA5zHMlMxjj3sEVKWm3pGZhHXE0Q3ykjrj+OSRVaYw+Dqg==
+  dependencies:
+    tweetnacl "^1.0.3"
+
 ts-node-dev@^1.0.0-pre.44:
   version "1.0.0-pre.44"
   resolved "https://registry.yarnpkg.com/ts-node-dev/-/ts-node-dev-1.0.0-pre.44.tgz#2f4d666088481fb9c4e4f5bc8f15995bd8b06ecb"
@@ -4703,6 +4745,11 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"
   resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
   integrity sha1-WuaBd/GS1EViadEIr6k/+HQ/T2Q=
+
+tweetnacl@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-1.0.3.tgz#ac0af71680458d8a6378d0d0d050ab1407d35596"
+  integrity sha512-6rt+RN7aOi1nGMyC4Xa5DdYiukl2UWCbcJft7YhxReBGQD7OAM8Pbxw6YMo4r2diNEA8FEmu32YOn9rhaiE5yw==
 
 type-check@~0.3.2:
   version "0.3.2"

@@ -456,10 +456,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@nms-ticketing/common@^1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@nms-ticketing/common/-/common-1.4.0.tgz#ded78b303715a75820f11c20146eb2a6d58a0361"
-  integrity sha512-IRmK9zlWfSWT2bM/dript0xSdx5laQTjaxJD7YgJHz42QjBntf2scP1FxZI7xu4f9o3zAzen+PkqmoBxOaw1Jg==
+"@nms-ticketing/common@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@nms-ticketing/common/-/common-1.5.0.tgz#cd37d4ea856892bae165f3af29c902e3fa6c65b8"
+  integrity sha512-K5YmHStzFuswPdVjIgSqPJbdFsWSN80XiMi6UHMl+1NG4X0K6uzTKuhUBYGG6Xs6lfA2Ae5hBF3WeGHLTQQDyA==
   dependencies:
     "@types/cookie-session" "^2.0.39"
     "@types/express" "^4.17.6"
