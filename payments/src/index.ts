@@ -2,6 +2,8 @@ import mongoose from 'mongoose';
 
 import { app } from './app';
 import { natsWrapper } from './nats-wrapper';
+import { OrderCreatedListener } from './events/listeners/order-created-listener';
+import { OrderCancelledListener } from './events/listeners/order-cancelled-listener';
 
 const start = async () => {
   if (!process.env.JWT_KEY) {
@@ -38,18 +40,21 @@ const start = async () => {
     process.on('SIGINT', () => natsWrapper.client.close());
     process.on('SIGTERM', () => natsWrapper.client.close());
 
+    new OrderCreatedListener(natsWrapper.client).listen();
+    new OrderCancelledListener(natsWrapper.client).listen();
+
     await mongoose.connect(process.env.MONGO_DB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
     });
-    console.log('tickets-service connected to tickets-db');
+    console.log('payments-service connected to payments-db');
   } catch (e) {
     console.log(e);
   }
 
   app.listen(5003, () => {
-    console.log('Tickets service listening on PORT: 5001');
+    console.log('Payments service listening on PORT: 5003');
   });
 };
 
