@@ -7,7 +7,7 @@ import { generateID } from './helpers/generate-id';
 declare global {
   namespace NodeJS {
     interface Global {
-      signin(): string[];
+      signin(userId?: string): string[];
     }
   }
 }
@@ -42,9 +42,8 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 
-global.signin = () => {
+global.signin = (id: string = generateID()) => {
   // Build JwT payload {id, email}
-  const id = generateID();
   const payload = {
     id,
     email: 'test@test.com',
