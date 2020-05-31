@@ -1,16 +1,17 @@
-import { Router } from 'next/router';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { Heading, Box, FormLabel, Input, Button, Stack } from '@chakra-ui/core';
 import useRequest from '../../hooks/use-request';
 
 const SignIn = () => {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { doRequest, errors } = useRequest({
     url: '/api/users/signin',
     method: 'post',
     body: { email, password },
-    onSuccess: () => Router.push('/'),
+    onSuccess: () => router.push('/'),
   });
 
   const onSubmitHandler = async (e) => {
