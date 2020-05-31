@@ -1,6 +1,7 @@
 import { Box, Heading, Text } from '@chakra-ui/core';
 import { useEffect, useState } from 'react';
 import StripeCheckout from 'react-stripe-checkout';
+
 import useRequest from '../../hooks/use-request';
 import RouteLink from '../../components/route-link';
 

@@ -54,7 +54,7 @@ const start = async () => {
   }
 
   app.listen(5003, () => {
-    console.log('Payments service listening on PORT: 5003');
+    console.log('Payments Service listening on PORT: 5003');
   });
 };
 

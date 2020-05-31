@@ -61,7 +61,7 @@ const start = async () => {
   }
 
   app.listen(5002, () => {
-    console.log('orders service listening on PORT: 5002');
+    console.log('Orders service listening on PORT: 5002');
   });
 };
 
