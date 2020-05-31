@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-service
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  rules:
+    - host: teeket.k8s.dev
+      http:
+        paths:
+          - path: /api/users/?(.*)
+            backend:
+              serviceName: auth-service
+              servicePort: 5000
+          - path: /api/tickets/?(.*)
+            backend:
+              serviceName: tickets-service
+              servicePort: 5001
+          - path: /api/orders/?(.*)
+            backend:
+              serviceName: orders-service
+              servicePort: 5002
+          - path: /api/payments/?(.*)
+            backend:
+              serviceName: payments-service
+              servicePort: 5003
+          - path: /?(.*)
+            backend:
+              serviceName: client-service
+              servicePort: 3000
