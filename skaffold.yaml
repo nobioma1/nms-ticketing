@@ -4,6 +4,7 @@ deploy:
   kubectl:
     manifests:
       - ./infra/k8s/*
+      - ./infra/k8s-dev/*
 build:
   local:
     push: false
@@ -14,7 +15,7 @@ build:
         dockerfile: dockerfile
       sync:
         manual:
-          - src: 'src/**/*.ts'
+          - src: "src/**/*.ts"
             dest: .
     - image: nobioma1/client
       context: client
@@ -22,7 +23,7 @@ build:
         dockerfile: dockerfile
       sync:
         manual:
-          - src: '**/*.js'
+          - src: "**/*.js"
             dest: .
     - image: nobioma1/expiration
       context: expiration
@@ -30,7 +31,7 @@ build:
         dockerfile: dockerfile
       sync:
         manual:
-          - src: 'src/**/*.ts'
+          - src: "src/**/*.ts"
             dest: .
     - image: nobioma1/orders
       context: orders
@@ -38,7 +39,7 @@ build:
         dockerfile: dockerfile
       sync:
         manual:
-          - src: 'src/**/*.ts'
+          - src: "src/**/*.ts"
             dest: .
     - image: nobioma1/payments
       context: payments
@@ -46,7 +47,7 @@ build:
         dockerfile: dockerfile
       sync:
         manual:
-          - src: 'src/**/*.ts'
+          - src: "src/**/*.ts"
             dest: .
     - image: nobioma1/tickets
       context: tickets
@@ -54,5 +55,5 @@ build:
         dockerfile: dockerfile
       sync:
         manual:
-          - src: 'src/**/*.ts'
+          - src: "src/**/*.ts"
             dest: .
