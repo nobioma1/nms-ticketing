@@ -16,4 +16,4 @@ jobs:
         with:
           DO_TOKEN: ${{ secrets.DO_TOKEN }}
       - run: doctl kubernetes cluster kubeconfig save nms-ticketing
-      - run: kubectl apply -f infra/K8s  
+      - run: kubectl apply -f infra/K8s && kubectl apply -f infra/K8s-prod  
