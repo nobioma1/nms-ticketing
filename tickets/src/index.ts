@@ -54,7 +54,7 @@ const start = async () => {
   }
 
   app.listen(5001, () => {
-    console.log('Tickets service listening on PORT: 5001');
+    console.log('Tickets Service listening on PORT: 5001');
   });
 };
 

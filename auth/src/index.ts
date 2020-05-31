@@ -23,7 +23,7 @@ const start = async () => {
   }
 
   app.listen(5000, () => {
-    console.log('Auth service listening on PORT: 5000');
+    console.log('Auth Service listening on PORT: 5000');
   });
 };
 
