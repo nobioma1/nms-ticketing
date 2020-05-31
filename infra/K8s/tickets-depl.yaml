@@ -21,17 +21,16 @@ spec:
                 fieldRef:
                   fieldPath: metadata.name
             - name: NATS_URL
-              value: "http://nats-service:4222"
+              value: 'http://nats-service:4222'
             - name: NATS_CLUSTER_ID
-              value: "ticketing"
+              value: 'ticketing'
             - name: MONGO_DB_URI
-              value: "mongodb://tickets-mongo-service:27017/tickets"
+              value: 'mongodb://tickets-mongo-service:27017/tickets'
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:
                   name: jwt-secret
                   key: JWT_KEY
-
 ---
 apiVersion: v1
 kind: Service
