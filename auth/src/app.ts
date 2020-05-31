@@ -1,7 +1,7 @@
+import { errorHandler, NotFoundError } from '@nms-ticketing/common';
 import cookieSession from 'cookie-session';
 import express from 'express';
 import 'express-async-errors';
-import { errorHandler, NotFoundError } from '@nms-ticketing/common';
 
 import { currentUserRouter } from './routes/currentUser';
 import { signIn } from './routes/signin';
