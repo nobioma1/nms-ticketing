@@ -2,7 +2,7 @@ name: deploy-auth
 
 on:
   push:
-    branches: 
+    branches:
       - master
     paths:
       - 'auth/**'
@@ -20,6 +20,6 @@ jobs:
       - run: docker push nobioma1/auth
       - uses: digitalocean/action-doctl@v2
         with:
-          DO_TOKEN: ${{ secrets.DO_TOKEN }}
+          token: ${{ secrets.DO_TOKEN }}
       - run: doctl kubernetes cluster kubeconfig save nms-ticketing
-      - run: kubectl rollout restart deployment auth-depl     
+      - run: kubectl rollout restart deployment auth-depl
