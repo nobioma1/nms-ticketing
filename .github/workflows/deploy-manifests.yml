@@ -2,7 +2,7 @@ name: deploy-manifests
 
 on:
   push:
-    branches: 
+    branches:
       - master
     paths:
       - 'infra/**'
@@ -16,4 +16,4 @@ jobs:
         with:
           DO_TOKEN: ${{ secrets.DO_TOKEN }}
       - run: doctl kubernetes cluster kubeconfig save nms-ticketing
-      - run: kubectl apply -f infra/K8s && kubectl apply -f infra/K8s-prod  
+      - run: kubectl apply -f infra/K8s && kubectl apply -f infra/K8s-prod
