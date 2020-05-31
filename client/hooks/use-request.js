@@ -5,26 +5,27 @@ import { Alert, List, ListItem, ListIcon, Flex } from '@chakra-ui/core';
 const useRequest = ({ url, method, body, onSuccess }) => {
   const [errors, setErrors] = useState(null);
 
-  const doRequest = async () => {
+  const doRequest = async (props = {}) => {
     try {
       setErrors(null);
-      const response = await axios[method](url, body);
+      const { data } = await axios[method](url, { ...body, ...props });
 
       if (onSuccess) {
-        onSuccess(response.data);
+        onSuccess(data);
       }
 
-      return response.data;
+      return data;
     } catch (err) {
       setErrors(
         <Alert status="error">
           <List>
-            {err.response.data.errors.map((error) => (
-              <Flex alignItems="center">
-                <ListIcon icon="warning" color="red.300" />
-                <ListItem key={error.message}>{error.message}</ListItem>
-              </Flex>
-            ))}
+            {err.response &&
+              err.response.data.errors.map((error) => (
+                <Flex alignItems="center">
+                  <ListIcon icon="warning" color="red.300" />
+                  <ListItem key={error.message}>{error.message}</ListItem>
+                </Flex>
+              ))}
           </List>
         </Alert>
       );
