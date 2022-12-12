@@ -22,7 +22,7 @@
     "@types/jsonwebtoken": "^8.3.9",
     "@types/mongoose": "^5.7.16",
     "cookie-session": "^1.4.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-async-errors": "^3.1.1",
     "express-validator": "^6.4.1",
     "jsonwebtoken": "^8.5.1",
